@@ -2,7 +2,7 @@
 
 RedisBungee为[Redis](http://redis.io)和BungeeCord搭建了一座桥梁。部署在[The Chunk](http://thechunk.net)以确保多Bungee服务端的配置顺利进行
 
-## Compiling
+## 编译
 
 RedisBungee作为一个[maven](http://maven.apache.org)项目。您可以编译并将其安装到您的Maven本地存储库中：
 
