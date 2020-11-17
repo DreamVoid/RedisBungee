@@ -1,15 +1,15 @@
 # RedisBungee
 
-RedisBungee bridges [Redis](http://redis.io) and BungeeCord together. This is the solution deployed on [The Chunk](http://thechunk.net) to make sure our multi-Bungee setup flows smoothly together.
+RedisBungee为[Redis](http://redis.io)和BungeeCord搭建了一座桥梁。部署在[The Chunk](http://thechunk.net)以确保多Bungee服务端的配置顺利进行
 
 ## Compiling
 
-RedisBungee is distributed as a [maven](http://maven.apache.org) project. To compile it and install it in your local Maven repository:
+RedisBungee作为一个[maven](http://maven.apache.org)项目。您可以编译并将其安装到您的Maven本地存储库中：
 
     git clone https://github.com/minecrafter/RedisBungee.git
     cd RedisBungee
     mvn clean install
 
-## Configuration
+## 配置
 
-**REDISBUNGEE REQUIRES A REDIS SERVER**, preferably with reasonably low latency. The default [config](https://github.com/minecrafter/RedisBungee/blob/master/src/main/resources/example_config.yml) is saved when the plugin first starts.
+**REDISBUNGEE需要一个REDIS服务器**，两个服务器之间的延迟越低越好（最好在同一本地服务器上）。 默认[配置](https://github.com/DreamVoid/RedisBungee/blob/master/src/main/resources/example_config.yml)会在插件第一次启动后保存
