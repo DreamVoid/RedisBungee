@@ -25,20 +25,20 @@ public abstract class RedisCallable<T> implements Callable<T>, Runnable {
         try (Jedis jedis = plugin.getPool().getResource()) {
             return call(jedis);
         } catch (JedisConnectionException e) {
-            plugin.getLogger().log(Level.SEVERE, "Unable to get connection", e);
+            plugin.getLogger().log(Level.SEVERE, "无法建立连接", e);
 
             if (!retry) {
                 // Wait one second before retrying the task
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {
-                    throw new RuntimeException("task failed to run", e1);
+                    throw new RuntimeException("任务运行失败", e1);
                 }
                 return run(true);
             }
         }
 
-        throw new RuntimeException("task failed to run");
+        throw new RuntimeException("任务运行失败");
     }
 
     protected abstract T call(Jedis jedis);

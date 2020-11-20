@@ -96,7 +96,7 @@ public final class UUIDTranslator {
             try {
                 uuidMap1 = new UUIDFetcher(Collections.singletonList(player)).call();
             } catch (Exception e) {
-                plugin.getLogger().log(Level.SEVERE, "Unable to fetch UUID from Mojang for " + player, e);
+                plugin.getLogger().log(Level.SEVERE, "无法从Mojang获取指定玩家的UUID: " + player, e);
                 return null;
             }
             for (Map.Entry<String, UUID> entry : uuidMap1.entrySet()) {
@@ -106,7 +106,7 @@ public final class UUIDTranslator {
                 }
             }
         } catch (JedisException e) {
-            plugin.getLogger().log(Level.SEVERE, "Unable to fetch UUID for " + player, e);
+            plugin.getLogger().log(Level.SEVERE, "无法为指定玩家获取UUID: " + player, e);
         }
 
         return null; // Nope, game over!
@@ -156,7 +156,7 @@ public final class UUIDTranslator {
                 List<String> nameHist = NameFetcher.nameHistoryFromUuid(player);
                 name = Iterables.getLast(nameHist, null);
             } catch (Exception e) {
-                plugin.getLogger().log(Level.SEVERE, "Unable to fetch name from Mojang for " + player, e);
+                plugin.getLogger().log(Level.SEVERE, "无法从Mojang为指定玩家获取名称: " + player, e);
                 return null;
             }
 
@@ -167,7 +167,7 @@ public final class UUIDTranslator {
 
             return null;
         } catch (JedisException e) {
-            plugin.getLogger().log(Level.SEVERE, "Unable to fetch name for " + player, e);
+            plugin.getLogger().log(Level.SEVERE, "无法为指定玩家获取名称: " + player, e);
             return null;
         }
     }

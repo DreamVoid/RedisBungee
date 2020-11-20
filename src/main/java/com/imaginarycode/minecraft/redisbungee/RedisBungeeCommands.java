@@ -28,11 +28,11 @@ import java.util.UUID;
  */
 class RedisBungeeCommands {
     private static final BaseComponent[] NO_PLAYER_SPECIFIED =
-            new ComponentBuilder("You must specify a player name.").color(ChatColor.RED).create();
+            new ComponentBuilder("你必须指定一个玩家！").color(ChatColor.RED).create();
     private static final BaseComponent[] PLAYER_NOT_FOUND =
-            new ComponentBuilder("No such player found.").color(ChatColor.RED).create();
+            new ComponentBuilder("找不到指定玩家！").color(ChatColor.RED).create();
     private static final BaseComponent[] NO_COMMAND_SPECIFIED =
-            new ComponentBuilder("You must specify a command to be run.").color(ChatColor.RED).create();
+            new ComponentBuilder("你必须指定一个命令！").color(ChatColor.RED).create();
 
     private static String playerPlural(int num) {
         return num == 1 ? num + " player is" : num + " players are";
@@ -53,7 +53,7 @@ class RedisBungeeCommands {
                 public void run() {
                     int count = RedisBungee.getApi().getPlayerCount();
                     BaseComponent[] playersOnline = new ComponentBuilder("").color(ChatColor.YELLOW)
-                            .append(playerPlural(count) + " currently online.").create();
+                            .append(playerPlural(count) + "名玩家在线").create();
                     if (args.length > 0 && args[0].equals("showall")) {
                         Multimap<String, UUID> serverToPlayers = RedisBungee.getApi().getServerToPlayers();
                         Multimap<String, String> human = HashMultimap.create();
@@ -75,7 +75,7 @@ class RedisBungeeCommands {
                         sender.sendMessage(playersOnline);
                     } else {
                         sender.sendMessage(playersOnline);
-                        sender.sendMessage(new ComponentBuilder("To see all players online, use /glist showall.").color(ChatColor.YELLOW).create());
+                        sender.sendMessage(new ComponentBuilder("查看所有在线的玩家，请使用/glist showall.").color(ChatColor.YELLOW).create());
                     }
                 }
             });
@@ -141,13 +141,13 @@ class RedisBungeeCommands {
                         TextComponent message = new TextComponent();
                         if (secs == 0) {
                             message.setColor(ChatColor.GREEN);
-                            message.setText(args[0] + " is currently online.");
+                            message.setText(args[0] + "当前在线");
                         } else if (secs != -1) {
                             message.setColor(ChatColor.BLUE);
-                            message.setText(args[0] + " was last online on " + new SimpleDateFormat().format(secs) + ".");
+                            message.setText(args[0] + "于" + new SimpleDateFormat().format(secs) + "最后一次在线");
                         } else {
                             message.setColor(ChatColor.RED);
-                            message.setText(args[0] + " has never been online.");
+                            message.setText(args[0] + "从未在线");
                         }
                         sender.sendMessage(message);
                     } else {
@@ -181,7 +181,7 @@ class RedisBungeeCommands {
                         if (ia != null) {
                             TextComponent message = new TextComponent();
                             message.setColor(ChatColor.GREEN);
-                            message.setText(args[0] + " is connected from " + ia.toString() + ".");
+                            message.setText(args[0] + "已连接到" + ia.toString());
                             sender.sendMessage(message);
                         } else {
                             sender.sendMessage(PLAYER_NOT_FOUND);
@@ -217,7 +217,7 @@ class RedisBungeeCommands {
                         if (proxy != null) {
                             TextComponent message = new TextComponent();
                             message.setColor(ChatColor.GREEN);
-                            message.setText(args[0] + " is connected to " + proxy + ".");
+                            message.setText(args[0] + "已连接到" + proxy);
                             sender.sendMessage(message);
                         } else {
                             sender.sendMessage(PLAYER_NOT_FOUND);
@@ -245,7 +245,7 @@ class RedisBungeeCommands {
                 RedisBungee.getApi().sendProxyCommand(command);
                 TextComponent message = new TextComponent();
                 message.setColor(ChatColor.GREEN);
-                message.setText("Sent the command /" + command + " to all proxies.");
+                message.setText("使用指令/" + command + "以显示所有代理");
                 sender.sendMessage(message);
             } else {
                 sender.sendMessage(NO_COMMAND_SPECIFIED);
@@ -264,7 +264,7 @@ class RedisBungeeCommands {
         @Override
         public void execute(CommandSender sender, String[] args) {
             TextComponent textComponent = new TextComponent();
-            textComponent.setText("You are on " + RedisBungee.getApi().getServerId() + ".");
+            textComponent.setText("你已连接到" + RedisBungee.getApi().getServerId());
             textComponent.setColor(ChatColor.YELLOW);
             sender.sendMessage(textComponent);
         }
@@ -278,7 +278,7 @@ class RedisBungeeCommands {
         @Override
         public void execute(CommandSender sender, String[] strings) {
             TextComponent textComponent = new TextComponent();
-            textComponent.setText("All server IDs: " + Joiner.on(", ").join(RedisBungee.getApi().getAllServers()));
+            textComponent.setText("所有已注册的代理ID: " + Joiner.on(", ").join(RedisBungee.getApi().getAllServers()));
             textComponent.setColor(ChatColor.YELLOW);
             sender.sendMessage(textComponent);
         }
@@ -299,12 +299,12 @@ class RedisBungeeCommands {
                 public void run() {
                     String proxy = args.length >= 1 ? args[0] : RedisBungee.getConfiguration().getServerId();
                     if (!plugin.getServerIds().contains(proxy)) {
-                        sender.sendMessage(new ComponentBuilder(proxy + " is not a valid proxy. See /serverids for valid proxies.").color(ChatColor.RED).create());
+                        sender.sendMessage(new ComponentBuilder(proxy + "不是有效的代理，使用指令/serverids查看有效的代理ID").color(ChatColor.RED).create());
                         return;
                     }
                     Set<UUID> players = RedisBungee.getApi().getPlayersOnProxy(proxy);
                     BaseComponent[] playersOnline = new ComponentBuilder("").color(ChatColor.YELLOW)
-                            .append(playerPlural(players.size()) + " currently on proxy " + proxy + ".").create();
+                            .append(playerPlural(players.size()) + "已连接到代理" + proxy + ".").create();
                     if (args.length >= 2 && args[1].equals("showall")) {
                         Multimap<String, UUID> serverToPlayers = RedisBungee.getApi().getServerToPlayers();
                         Multimap<String, String> human = HashMultimap.create();
@@ -328,7 +328,7 @@ class RedisBungeeCommands {
                         sender.sendMessage(playersOnline);
                     } else {
                         sender.sendMessage(playersOnline);
-                        sender.sendMessage(new ComponentBuilder("To see all players online, use /plist " + proxy + " showall.").color(ChatColor.YELLOW).create());
+                        sender.sendMessage(new ComponentBuilder("查看所有在线的玩家，请使用/plist " + proxy + " showall.").color(ChatColor.YELLOW).create());
                     }
                 }
             });
@@ -345,9 +345,9 @@ class RedisBungeeCommands {
 
         @Override
         public void execute(final CommandSender sender, final String[] args) {
-            TextComponent poolActiveStat = new TextComponent("Currently active pool objects: " + plugin.getPool().getNumActive());
-            TextComponent poolIdleStat = new TextComponent("Currently idle pool objects: " + plugin.getPool().getNumIdle());
-            TextComponent poolWaitingStat = new TextComponent("Waiting on free objects: " + plugin.getPool().getNumWaiters());
+            TextComponent poolActiveStat = new TextComponent("活跃的代理池对象: " + plugin.getPool().getNumActive());
+            TextComponent poolIdleStat = new TextComponent("空闲的代理池对象: " + plugin.getPool().getNumIdle());
+            TextComponent poolWaitingStat = new TextComponent("等待空闲的对象: " + plugin.getPool().getNumWaiters());
             sender.sendMessage(poolActiveStat);
             sender.sendMessage(poolIdleStat);
             sender.sendMessage(poolWaitingStat);

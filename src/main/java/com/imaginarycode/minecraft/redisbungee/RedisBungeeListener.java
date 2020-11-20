@@ -31,13 +31,13 @@ import java.util.*;
 @AllArgsConstructor
 public class RedisBungeeListener implements Listener {
     private static final BaseComponent[] ALREADY_LOGGED_IN =
-            new ComponentBuilder("You are already logged on to this server.").color(ChatColor.RED)
-                    .append("\n\nIt may help to try logging in again in a few minutes.\nIf this does not resolve your issue, please contact staff.")
+            new ComponentBuilder("你已连接到此服务器！").color(ChatColor.RED)
+                    .append("\n\n请尝试在几分钟后重新登录.\n如果问题仍然存在，请联系管理员.")
                     .color(ChatColor.GRAY)
                     .create();
     private static final BaseComponent[] ONLINE_MODE_RECONNECT =
-            new ComponentBuilder("Whoops! You need to reconnect.").color(ChatColor.RED)
-                    .append("\n\nWe found someone online using your username. They were kicked and you may reconnect.\nIf this does not work, please contact staff.")
+            new ComponentBuilder("Whoops! 你需要重新连接.").color(ChatColor.RED)
+                    .append("\n\n我们发现有人使用您的ID进入了服务器。他们已被踢出，并且你可能需要重新连接.\n如果这不是您的操作并且重新连接无效，请联系管理员.")
                     .color(ChatColor.GRAY)
                     .create();
     private final RedisBungee plugin;
@@ -284,7 +284,7 @@ public class RedisBungeeListener implements Listener {
             String message = event.getMessage();
             if (message.startsWith("/"))
                 message = message.substring(1);
-            plugin.getLogger().info("Invoking command via PubSub: /" + message);
+            plugin.getLogger().info("通过PubSub调用命令: /" + message);
             plugin.getProxy().getPluginManager().dispatchCommand(RedisBungeeCommandSender.instance, message);
         }
     }

@@ -1,5 +1,5 @@
-# RedisBungee configuration file.
-# PLEASE READ THE WIKI: https://github.com/minecrafter/RedisBungee/wiki
+# RedisBungee 配置文件
+# 请阅读指南: https://github.com/minecrafter/RedisBungee/wiki
 
 # The Redis server you use.
 # Get Redis from http://redis.io/
