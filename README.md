@@ -1,21 +1,30 @@
-# RedisBungee
+# Home
 
-RedisBungee为[Redis](http://redis.io)和BungeeCord搭建了一座桥梁。部署在[The Chunk](http://thechunk.net)以确保多Bungee服务端的配置顺利进行
+**RedisBungee** is the leading player synchronization system for BungeeCord.
 
-## DreamVoid 分支说明
+RedisBungee shares data using the [Redis](http://redis.io/) key-value store.
 
-RedisBungee已经弃坑，但是我仍然想宣传一下这个强大到Hypixel都用到里面的技术的插件
+RedisBungee is currently used in production on several large and well-known Minecraft networks, making it a logical addition to your network if you are looking to grow.
 
-翻译工作已经在做了
+## Features. \#\#
 
-## 编译
+* **Synchronizes most player information**, including network count.
+* **Graceful degradation**, If a BungeeCord instance goes down, your network doesn't go down. Only a portion of it does.
+* **Highly scalable**, RedisBungee has supported networks with thousands of concurrent players online. Don't believe it? Just ask.
+* **Meticulously optimized**, for the highest performance.
+* **Powered by** [**Redis**](http://redis.io/), a flexible key-store value with many libraries available for it.
+* **Easy to hook and use**, with a wide variety of available plugins developed for it.
 
-RedisBungee作为一个[maven](http://maven.apache.org)项目。您可以编译并将其安装到您的Maven本地存储库中：
+## Installation. \#\#
 
-    git clone https://github.com/minecrafter/RedisBungee.git
-    cd RedisBungee
-    mvn clean install
+* [Installation](https://github.com/minecrafter/RedisBungee/wiki/Installation)
+* [Usage](https://github.com/minecrafter/RedisBungee/wiki/Usage)
+* [Configuration](https://github.com/minecrafter/RedisBungee/wiki/Configuration)
+* [FAQ](https://github.com/minecrafter/RedisBungee/wiki/FAQ)
 
-## 配置
+## Usage \#\#
 
-**REDISBUNGEE需要一个REDIS服务器**，两个服务器之间的延迟越低越好（最好在同一本地服务器上）。 默认[配置](https://github.com/DreamVoid/RedisBungee/blob/master/src/main/resources/example_config.yml)会在插件第一次启动后保存
+* [Commands](https://github.com/minecrafter/RedisBungee/wiki/Commands)
+* [API](https://github.com/minecrafter/RedisBungee/wiki/API)
+* [Plugins with RedisBungee support](https://github.com/minecrafter/RedisBungee/wiki/Plugins)
+
