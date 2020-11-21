@@ -1,31 +1,33 @@
 # RedisBungee 配置文件
 # 请阅读指南: https://github.com/minecrafter/RedisBungee/wiki
 
-# The Redis server you use.
-# Get Redis from http://redis.io/
+# 您使用的Redis服务器
+# 您可以在 http://redis.io/ 下载Redis
 redis-server: 127.0.0.1
 redis-port: 6379
-# OPTIONAL: If your Redis server uses AUTH, set the password required.
+# 可选: 如果您的Redis服务器需要身份验证，则您需要设置连接密钥
 redis-password: ""
-# Maximum connections that will be maintained to the Redis server.
-# The default is 8. This setting should be left as-is unless you have some wildly
-# inefficient plugins or a lot of players.
+# 同时连接到Redis服务器的最大数量
+# 默认值为8。正常情况下不应该修改此设置，
+# 除非您的服务器由很多玩家或有一些效率低下的插件。
 max-redis-connections: 8
 
-# An identifier for this BungeeCord instance.
+# 当前BungeeCord的ID，必须唯一！
 server-id: test1
 
-# Whether or not RedisBungee should install its version of regular BungeeCord commands.
-# Often, the RedisBungee commands are desired, but in some cases someone may wish to
-# override the commands using another plugin.
+# RedisBungee是否应注册并接管BungeeCord的一些自带命令
+# 通常，您会需要RedisBungee接管自带命令，但是在某些情况下，
+# 您或许会希望使用其他插件，此时可以设为false
 #
-# If you are just denying access to the commands, RedisBungee uses the default BungeeCord
-# permissions - just deny them and access will be denied.
+# 如果您只想让玩家无法使用这些命令，默认的BungeeCord的权限系统
+# 或您使用的权限组插件即可做到
+# （译者注：参阅“命令”的“权限节点”一栏）
 #
-# Please note that with build 787+, most commands overridden by RedisBungee were moved to
-# modules, and these must be disabled or overridden yourself.
+# 请注意，从787版本开始，RedisBungee接管的大部分命令以移动至模块（modules）
+# 并且这些命令必须手动禁用以成功接管。
 register-bungee-commands: true
 
-# A list of IP addresses for which RedisBungee will not modify the response for, useful for automatic
-# restart scripts.
+# RedisBungee将不会对以下列出的IP地址修改BungeeCord返回的响应信息，
+# 对于需要使用自动重新启动脚本的服务端很好用。
+# 译者注：“BungeeCord返回的响应信息”指的是连接到当前BC端的人数等信息，RedisBungee会修改这个信息（比如人数）为整个服务器连接的人数
 exempt-ip-addresses: []

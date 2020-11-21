@@ -35,7 +35,7 @@ class RedisBungeeCommands {
             new ComponentBuilder("你必须指定一个命令！").color(ChatColor.RED).create();
 
     private static String playerPlural(int num) {
-        return num == 1 ? num + " player is" : num + " players are";
+        return num == 1 ? num + " player is" : num + "名玩家";
     }
 
     public static class GlistCommand extends Command {
@@ -53,7 +53,7 @@ class RedisBungeeCommands {
                 public void run() {
                     int count = RedisBungee.getApi().getPlayerCount();
                     BaseComponent[] playersOnline = new ComponentBuilder("").color(ChatColor.YELLOW)
-                            .append(playerPlural(count) + "名玩家在线").create();
+                            .append(playerPlural(count) + "在线").create();
                     if (args.length > 0 && args[0].equals("showall")) {
                         Multimap<String, UUID> serverToPlayers = RedisBungee.getApi().getServerToPlayers();
                         Multimap<String, String> human = HashMultimap.create();

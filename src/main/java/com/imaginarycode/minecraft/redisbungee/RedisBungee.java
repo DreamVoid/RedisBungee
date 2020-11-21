@@ -487,7 +487,7 @@ public final class RedisBungee extends Plugin {
                     throw new RuntimeException("无法创建HTTP客户端", e);
                 }
 
-                getLogger().log(Level.INFO, "成功连接到edis服务器.");
+                getLogger().log(Level.INFO, "成功连接到Redis服务器.");
             } catch (JedisConnectionException e) {
                 pool.destroy();
                 pool = null;
