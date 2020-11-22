@@ -6,7 +6,7 @@ RedisBungee为[Redis](http://redis.io)和BungeeCord搭建了一座桥梁。部�
 
 RedisBungee已经弃坑，但是我仍然想宣传一下这个强大到Hypixel都用到里面的技术的插件
 
-翻译工作已经在做了
+插件翻译已经基本完成，同时[插件Wiki](https://redisbungee.plugwiki.dreamvoid.ml)的翻译工作也已经完成。
 
 ## 编译
 
